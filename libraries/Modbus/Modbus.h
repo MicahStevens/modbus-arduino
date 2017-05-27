@@ -43,7 +43,7 @@ enum {
 typedef struct TRegister {
     word address;
     word value;
-	word (*cb) (word, byte); // pointer to callback function
+	word (*cb) (word, word, byte); // pointer to callback function
     struct TRegister* next;
 } TRegister;
 
@@ -66,7 +66,7 @@ class Modbus {
 
         TRegister* searchRegister(word addr);
 
-        void addReg(word address, word value = 0, word (*cb)(word, byte) = 0);
+        void addReg(word address, word value = 0, word (*cb)(word, word, byte) = 0);
         bool Reg(word address, word value, byte src = 0);
         word Reg(word address);
 
@@ -79,14 +79,14 @@ class Modbus {
     public:
         Modbus();
 
-        void addHreg(word offset, word value = 0, word (*cb)(word, byte) = 0);
+        void addHreg(word offset, word value = 0, word (*cb)(word, word, byte) = 0);
         bool Hreg(word offset, word value, byte src = 0);
         word Hreg(word offset);
 
         #ifndef USE_HOLDING_REGISTERS_ONLY
-            void addCoil(word offset, bool value = false, word (*cb)(word, byte) = 0);
-            void addIsts(word offset, bool value = false, word (*cb)(word, byte) = 0);
-            void addIreg(word offset, word value = 0, word (*cb)(word, byte) = 0);
+            void addCoil(word offset, bool value = false, word (*cb)(word, word, byte) = 0);
+            void addIsts(word offset, bool value = false, word (*cb)(word, word, byte) = 0);
+            void addIreg(word offset, word value = 0, word (*cb)(word, word, byte) = 0);
 
             bool Coil(word offset, bool value, byte src = 0);
             bool Ists(word offset, bool value, byte src = 0);

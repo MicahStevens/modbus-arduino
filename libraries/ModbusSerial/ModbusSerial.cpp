@@ -20,7 +20,8 @@ byte ModbusSerial::getSlaveId() {
 bool ModbusSerial::config(HardwareSerial* port, long baud, u_int format, int txPin) {
     this->_port = port;
     this->_txPin = txPin;
-    (*port).begin(baud, format);
+    //(*port).begin(baud, format);
+    Serial2.begin(baud,SERIAL_8E1);
 
     delay(2000);
 
@@ -65,12 +66,12 @@ bool ModbusSerial::config(SoftwareSerial* port, long baud, int txPin) {
 }
 #endif
 
-#ifdef __AVR_ATmega32U4__
+
 bool ModbusSerial::config(Serial_* port, long baud, u_int format, int txPin) {
     this->_port = port;
     this->_txPin = txPin;
     (*port).begin(baud, format);
-    while (!(*port));
+    //while (!(*port));
 
     if (txPin >= 0) {
         pinMode(txPin, OUTPUT);
@@ -87,7 +88,7 @@ bool ModbusSerial::config(Serial_* port, long baud, u_int format, int txPin) {
 
     return true;
 }
-#endif
+
 
 bool ModbusSerial::receive(byte* frame) {
     //first byte of frame = address
