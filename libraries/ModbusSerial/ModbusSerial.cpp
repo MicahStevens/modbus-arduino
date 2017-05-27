@@ -150,7 +150,7 @@ bool ModbusSerial::sendPDU(byte* pduframe) {
     }
 
     //Send CRC
-    word crc = calcCrc(_slaveId, _frame, _len);
+    unsigned int crc = calcCrc(_slaveId, _frame, _len);
     (*_port).write(crc >> 8);
     (*_port).write(crc & 0xFF);
 
@@ -188,7 +188,7 @@ void ModbusSerial::task() {
     _len = 0;
 }
 
-word ModbusSerial::calcCrc(byte address, byte* pduFrame, byte pduLen) {
+unsigned int ModbusSerial::calcCrc(byte address, byte* pduFrame, byte pduLen) {
 	byte CRCHi = 0xFF, CRCLo = 0x0FF, Index;
 
     Index = CRCHi ^ address;

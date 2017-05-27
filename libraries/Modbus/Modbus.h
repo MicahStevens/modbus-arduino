@@ -41,9 +41,9 @@ enum {
 };
 
 typedef struct TRegister {
-    word address;
-    word value;
-	word (*cb) (word, word, byte); // pointer to callback function
+    unsigned int address;
+    unsigned int value;
+	unsigned int (*cb) (word, word, byte); // pointer to callback function
     struct TRegister* next;
 } TRegister;
 
@@ -52,23 +52,23 @@ class Modbus {
         TRegister *_regs_head;
         TRegister *_regs_last;
 
-	void readRegisters(word startreg, word numregs);
-        void writeSingleRegister(word reg, word value);
-        void writeMultipleRegisters(byte* frame,word startreg, word numoutputs, byte bytecount);
+	void readRegisters(unsigned int startreg, unsigned int numregs);
+        void writeSingleRegister(unsigned int reg, unsigned int value);
+        void writeMultipleRegisters(byte* frame,unsigned int startreg, unsigned int numoutputs, byte bytecount);
         void exceptionResponse(byte fcode, byte excode);
         #ifndef USE_HOLDING_REGISTERS_ONLY
-            void readCoils(word startreg, word numregs);
-            void readInputStatus(word startreg, word numregs);
-            void readInputRegisters(word startreg, word numregs);
-            void writeSingleCoil(word reg, word status);
-            void writeMultipleCoils(byte* frame,word startreg, word numoutputs, byte bytecount);
+            void readCoils(unsigned int startreg, unsigned int numregs);
+            void readInputStatus(unsigned int startreg, unsigned int numregs);
+            void readInputRegisters(unsigned int startreg, unsigned int numregs);
+            void writeSingleCoil(unsigned int reg, unsigned int status);
+            void writeMultipleCoils(byte* frame,unsigned int startreg, unsigned int numoutputs, byte bytecount);
         #endif
 
-        TRegister* searchRegister(word addr);
+        TRegister* searchRegister(unsigned int addr);
 
-        void addReg(word address, word value = 0, word (*cb)(word, word, byte) = 0);
-        bool Reg(word address, word value, byte src = 0);
-        word Reg(word address);
+        void addReg(unsigned int address, unsigned int value = 0, unsigned int (*cb)(word, word, byte) = 0);
+        bool Reg(unsigned int address, unsigned int value, byte src = 0);
+        unsigned int Reg(unsigned int address);
 
     protected:
         byte *_frame;
@@ -79,22 +79,22 @@ class Modbus {
     public:
         Modbus();
 
-        void addHreg(word offset, word value = 0, word (*cb)(word, word, byte) = 0);
-        bool Hreg(word offset, word value, byte src = 0);
-        word Hreg(word offset);
+        void addHreg(unsigned int offset, unsigned int value = 0, unsigned int (*cb)(word, word, byte) = 0);
+        bool Hreg(unsigned int offset, unsigned int value, byte src = 0);
+        unsigned int Hreg(unsigned int offset);
 
         #ifndef USE_HOLDING_REGISTERS_ONLY
-            void addCoil(word offset, bool value = false, word (*cb)(word, word, byte) = 0);
-            void addIsts(word offset, bool value = false, word (*cb)(word, word, byte) = 0);
-            void addIreg(word offset, word value = 0, word (*cb)(word, word, byte) = 0);
+            void addCoil(unsigned int offset, bool value = false, unsigned int (*cb)(word, word, byte) = 0);
+            void addIsts(unsigned int offset, bool value = false, unsigned int (*cb)(word, word, byte) = 0);
+            void addIreg(unsigned int offset, unsigned int value = 0, unsigned int (*cb)(word, word, byte) = 0);
 
-            bool Coil(word offset, bool value, byte src = 0);
-            bool Ists(word offset, bool value, byte src = 0);
-            bool Ireg(word offset, word value, byte src = 0);
+            bool Coil(unsigned int offset, bool value, byte src = 0);
+            bool Ists(unsigned int offset, bool value, byte src = 0);
+            bool Ireg(unsigned int offset, unsigned int value, byte src = 0);
 
-            bool Coil(word offset);
-            bool Ists(word offset);
-            word Ireg(word offset);
+            bool Coil(unsigned int offset);
+            bool Ists(unsigned int offset);
+            unsigned int Ireg(unsigned int offset);
         #endif
 };
 

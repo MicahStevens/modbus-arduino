@@ -23,7 +23,7 @@ class ModbusSerial : public Modbus {
         unsigned int _t15; // inter character time out
         unsigned int _t35; // frame delay
         byte  _slaveId;
-        word calcCrc(byte address, byte* pduframe, byte pdulen);
+        unsigned int calcCrc(byte address, byte* pduframe, byte pdulen);
     public:
         ModbusSerial();
         bool setSlaveId(byte slaveId);

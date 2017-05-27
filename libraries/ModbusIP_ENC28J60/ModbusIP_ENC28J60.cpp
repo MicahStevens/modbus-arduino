@@ -36,8 +36,8 @@ void ModbusIP::config(uint8_t *mac, uint8_t * ip, uint8_t * dns, uint8_t * gatew
 }
 
 void ModbusIP::task() {
-    word len = ether.packetReceive();
-    word pos = ether.packetLoop(len);
+    unsigned int len = ether.packetReceive();
+    unsigned int pos = ether.packetLoop(len);
 
     if (pos) {
         int i = 0;

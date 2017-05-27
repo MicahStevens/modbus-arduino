@@ -199,25 +199,25 @@ In much the same way, the other examples show the use of other methods available
 
 ```
 void addCoil (offset word, bool value)
-void addHreg (offset word, word value)
+void addHreg (offset word, unsigned int value)
 void addIsts (offset word, bool value)
-void addIreg (offset word, word value)
+void addIreg (offset word, unsigned int value)
 ```
 Adds registers and configures initial value if specified.
 
 ```
 bool Coil (offset word, bool value)
-bool Hreg (offset word, word value)
+bool Hreg (offset word, unsigned int value)
 bool Ists (offset word, bool value)
-bool IREG (offset word, word value)
+bool IREG (offset word, unsigned int value)
 ```
 Sets a value to the register.
 
 ```
 bool Coil (offset word)
-Hreg word (word offset)
+Hreg unsigned int (unsigned int offset)
 bool Ists (offset word)
-IREG word (word offset)
+IREG unsigned int (unsigned int offset)
 ```
 Returns the value of a register.
 

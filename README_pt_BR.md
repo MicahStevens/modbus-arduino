@@ -213,27 +213,27 @@ Por fim o valor do registrador LAMP1_COIL é utilizado para acionar a lâmpada o
 De forma bastante similar os outros exemplos mostram o uso dos outros métodos
 disponíveis na biblioteca:
 ```
-void addCoil(word offset, bool value)
-void addHreg(word offset, word value)
-void addIsts(word offset, bool value)
-void addIreg(word offset, word value)
+void addCoil(unsigned int offset, bool value)
+void addHreg(unsigned int offset, unsigned int value)
+void addIsts(unsigned int offset, bool value)
+void addIreg(unsigned int offset, unsigned int value)
 ```
 Adiciona registradores e configura valor inicial se especificado.
 
 
 ```
-bool Coil(word offset, bool value)
-bool Hreg(word offset, word value)
-bool Ists(word offset, bool value)
-bool Ireg(word offset, word value)
+bool Coil(unsigned int offset, bool value)
+bool Hreg(unsigned int offset, unsigned int value)
+bool Ists(unsigned int offset, bool value)
+bool Ireg(unsigned int offset, unsigned int value)
 ```
 Configura um valor para o registrador.
 
 ```
-bool Coil(word offset)
-word Hreg(word offset)
-bool Ists(word offset)
-word Ireg(word offset)
+bool Coil(unsigned int offset)
+unsigned int Hreg(unsigned int offset)
+bool Ists(unsigned int offset)
+unsigned int Ireg(unsigned int offset)
 ```
 Retorna o valor de um registrador.
 
